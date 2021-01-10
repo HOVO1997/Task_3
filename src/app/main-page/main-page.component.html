@@ -1,0 +1,63 @@
+<div class="container mr-auto ml-auto">
+  <div class="d-flex justify-content-center">
+    <nav class="navbar navbar-light mt-5 mb-1">
+      <form class="form-inline">
+        <input (keyup)="getSession()" [(ngModel)]="searchVal" name="searchbar" class="form-control mr-sm-2" type="text"
+               placeholder="Search..." aria-label="Search">
+      </form>
+    </nav>
+  </div>
+  <div>
+    <div>
+      <button (click)="formHandle()" class="btn btn-info mb-2">Add User</button>
+      <button (click)="check()" class="ml-2 btn btn-info mb-2">Check all</button>
+      <button (click)="delChecked()" class="ml-2 btn btn-danger mb-2">Delete all checked</button>
+    </div>
+    <p *ngIf="req" class="text text-danger text-center">All fields is required!</p>
+    <div *ngIf="formShow" class="form-inline d-flex justify-content-center mb-2">
+      <input name="firstname" class="form-control col-sm-3 mr-1" type="text" placeholder="First Name"
+             [(ngModel)]="firstname">
+      <input name="lastname" class="form-control col-sm-3 mr-1" type="text" placeholder="Last Name"
+             [(ngModel)]="lastname">
+      <input name="email" class="form-control col-sm-3 mr-1" type="text" placeholder="Email address"
+             [(ngModel)]="email">
+      <button (click)="addUser()" class="btn btn-info">Save</button>
+    </div>
+    <div *ngIf="upd">
+    <form #myForm="ngForm" (ngSubmit)="updUser(myForm.value)" class="form-inline d-flex justify-content-center mb-2">
+      <input name="updName" class="form-control col-sm-3 mr-1" type="text"
+             [(ngModel)]="updName">
+      <input name="updSurname" class="form-control col-sm-3 mr-1" type="text"
+             [(ngModel)]="updSurname">
+      <input name="updEmail" class="form-control col-sm-3 mr-1" type="text"
+             [(ngModel)]="updEmail">
+      <button type="submit"  class="btn btn-info">Save</button>
+    </form>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of data ; let i = index">
+      <th scope="row">{{ i + 1}}</th>
+      <td>{{ user.name  }} {{ user.surname }} </td>
+      <td><a [href]="'mailto:'+user.email">{{user.email}}</a></td>
+      <td><input (click)="change(user.name)" [checked]="user.checked" type="checkbox"></td>
+      <td>
+        <button (click)="update(user.name)" class="btn btn-info">Edit</button>
+        <button (click)="delete(user.name)" class="btn btn-danger ml-2">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+
+</div>
