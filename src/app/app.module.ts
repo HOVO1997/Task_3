@@ -19,7 +19,6 @@ const appRoutes: Routes = [
   { path: '**', component: NotFoundComponent }
 ];
 
-
 @NgModule({
   declarations: [
     AppComponent,

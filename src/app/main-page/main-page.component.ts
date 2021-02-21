@@ -90,7 +90,7 @@ export class MainPageComponent implements OnInit {
         data.checked = false;
       }
       this.checked = !this.checked;
-    }else{
+    } else {
       for (const data of this.data) {
         data.checked = true;
       }
@@ -98,26 +98,26 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  public delChecked(): void{
-    if (confirm('Are you sure?')){
+  public delChecked(): void {
+    if (confirm('Are you sure?')) {
       this.data = this.data.filter(elem => elem.checked === false);
     }
   }
 
-  public change(val): void{
+  public change(val): void {
     for (const elem of this.data) {
-      if (val === elem.name){
+      if (val === elem.name) {
         elem.checked = !elem.checked;
       }
     }
   }
 
-  public update(val): void{
+  public update(val): void {
     this.upd = !this.upd;
     this.formShow = false;
     this.unique = val;
     for (const searchValElement of this.data) {
-      if (val === searchValElement.name){
+      if (val === searchValElement.name) {
         this.updName = searchValElement.name;
         this.updSurname = searchValElement.surname;
         this.updEmail = searchValElement.email;
@@ -126,17 +126,15 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  public updUser(val): void{
+  public updUser(val): void {
     for (const firstnameElement of this.data) {
-      if (this.unique === firstnameElement.name){
+      if (this.unique === firstnameElement.name) {
         firstnameElement.name = val.updName;
         firstnameElement.surname = val.updSurname;
         firstnameElement.email = val.updEmail;
       }
     }
-    this.updName = '';
-    this.updSurname = '';
-    this.updEmail = '';
+    this.updName = this.updSurname = this.updEmail = '';
     this.upd = false;
   }
 }
